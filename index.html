@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Surprise</title>
+
+    <!-- Import de la police Space Grotesk depuis Google Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&display=swap">
+
+    <style>
+        /* Style général */
+        body, html {
+            margin: 0;
+            padding: 0;
+            background-color: black;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            font-family: 'Space Grotesk', sans-serif;
+            overflow: hidden;
+        }
+
+        /* Style du crâne */
+        .skull-container {
+            position: relative;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .skull {
+            width: 150px;
+            height: 150px;
+            background: url('skull-138b.gif') no-repeat center;
+            background-size: contain;
+            animation: jawMovement 1s infinite;
+        }
+
+        @keyframes jawMovement {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(10px); }
+        }
+
+        /* Nouveau message en dessous du crâne */
+        .message {
+            margin-top: 20px;
+            font-size: 1.2em;
+            color: #ff1a1a;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        /* Style de l'écran de piratage */
+        #hacked-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: black;
+            color: #ff1a1a;
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        /* Message de piratage, centré et plus petit */
+        #hacked-message {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+        }
+
+        /* Sablier (animation) */
+        .hourglass {
+            width: 40px;
+            height: 40px;
+            border: 4px solid #ff1a1a;
+            border-top: 4px solid transparent;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+
+<div class="skull-container">
+    <div class="skull" id="skull"></div>
+    <div class="message">Clique ici</div>
+</div>
+
+<div id="hacked-screen">
+    <div id="hacked-message">Votre appareil a été piraté, SecurityAP ne fonctionne plus.</div>
+    <div class="hourglass"></div>
+</div>
+
+<script>
+    // Fonction pour afficher l'écran de piratage
+    function showHackedScreen() {
+        const hackedScreen = document.getElementById('hacked-screen');
+        hackedScreen.style.display = 'flex';
+
+        // Après 6 secondes, rediriger vers Google
+        setTimeout(() => {
+            window.location.href = 'https://www.google.com';
+        }, 6000); // 6 secondes de délai
+    }
+
+    // Ajouter un événement au clic sur le crâne
+    document.getElementById('skull').addEventListener('click', showHackedScreen);
+</script>
+
+</body>
+</html>
